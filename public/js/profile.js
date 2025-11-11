@@ -94,6 +94,6 @@ function displayUserProfile(data) {
 
 // View recipe detail
 function viewRecipe(recipeId) {
-    window.location.href = `/recipe-detail.html?id=${recipeId}`;
+    window.location.href = `./recipe-detail.html?id=${recipeId}`;
 }
 

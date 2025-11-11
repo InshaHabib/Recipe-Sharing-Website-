@@ -58,7 +58,7 @@ async function handleSubmitRecipe(e) {
 
         // Redirect to recipe detail page
         setTimeout(() => {
-            window.location.href = `/recipe-detail.html?id=${data.id}`;
+            window.location.href = `./recipe-detail.html?id=${data.id}`;
         }, 2000);
 
     } catch (error) {

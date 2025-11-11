@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         await loadRecipeDetail(recipeId);
     } else {
         document.getElementById('recipe-detail').innerHTML = 
-            '<p>Recipe not found. <a href="/browse.html">Browse recipes</a></p>';
+            '<p>Recipe not found. <a href="./browse.html">Browse recipes</a></p>';
     }
 });
 
@@ -25,7 +25,7 @@ async function loadRecipeDetail(recipeId) {
     } catch (error) {
         console.error('Error loading recipe:', error);
         document.getElementById('recipe-detail').innerHTML = 
-            '<p>Error loading recipe. <a href="/browse.html">Browse recipes</a></p>';
+            '<p>Error loading recipe. <a href="./browse.html">Browse recipes</a></p>';
     }
 }
 
@@ -90,7 +90,7 @@ async function deleteRecipe(recipeId) {
         }
 
         alert('Recipe deleted successfully');
-        window.location.href = '/browse.html';
+        window.location.href = './browse.html';
     } catch (error) {
         alert(error.message || 'Error deleting recipe');
     }

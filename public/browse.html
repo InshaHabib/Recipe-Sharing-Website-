@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipe Share - Browse Recipes</title>
+    <title>Pakistani Kitchen - Browse Recipes</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
@@ -11,13 +11,13 @@
     <nav class="navbar">
         <div class="container">
             <div class="nav-brand">
-                <h1 class="logo">🍳 Recipe Share</h1>
+                <h1 class="logo">🍳 Pakistani Kitchen</h1>
             </div>
             <ul class="nav-menu">
-                <li><a href="/" class="nav-link">Home</a></li>
-                <li><a href="/browse.html" class="nav-link active">Browse Recipes</a></li>
-                <li><a href="/submit.html" class="nav-link">Submit Recipe</a></li>
-                <li><a href="/profile.html" class="nav-link">User Profile</a></li>
+                <li><a href="./index.html" class="nav-link">Home</a></li>
+                <li><a href="./browse.html" class="nav-link active">Browse Recipes</a></li>
+                <li><a href="./submit.html" class="nav-link">Submit Recipe</a></li>
+                <li><a href="./profile.html" class="nav-link">User Profile</a></li>
                 <li><a href="#" class="nav-link" id="auth-link">Login</a></li>
             </ul>
         </div>
@@ -33,7 +33,7 @@
                         <option value="All">All Categories</option>
                         <option value="Breakfast">Breakfast</option>
                         <option value="Vegan">Vegan</option>
-                        <option value="Desserts">Desserts</option>
+                        <option value="Sweets">Sweets</option>
                         <option value="Main Course">Main Course</option>
                         <option value="Appetizers">Appetizers</option>
                         <option value="Beverages">Beverages</option>
@@ -75,24 +75,72 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2 id="modal-title">Login</h2>
+            <div id="auth-error" class="auth-error" style="display: none;"></div>
             <form id="auth-form">
                 <div id="username-field" style="display: none;">
                     <label>Username</label>
-                    <input type="text" id="username" required>
+                    <input type="text" id="username" placeholder="Enter your username" required>
                 </div>
                 <div>
                     <label>Email</label>
-                    <input type="email" id="email" required>
+                    <input type="email" id="email" placeholder="Enter your email" required>
                 </div>
                 <div>
                     <label>Password</label>
-                    <input type="password" id="password" required>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                    <small id="password-hint" style="display: none; color: #666; font-size: 0.85rem;">Password must be at least 6 characters</small>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" id="auth-submit-btn">Login</button>
             </form>
             <p id="toggle-auth">Don't have an account? <a href="#" id="toggle-link">Register</a></p>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Pakistani Kitchen</h3>
+                    <p>Discover and share authentic Pakistani recipes. From traditional biryani to sweet desserts, explore the rich flavors of Pakistani cuisine.</p>
+                    <!-- <div class="social-links">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="YouTube">📺</a>
+                    </div> -->
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="./index.html">Home</a></li>
+                        <li><a href="./browse.html">Browse Recipes</a></li>
+                        <li><a href="./submit.html">Submit Recipe</a></li>
+                        <li><a href="./profile.html">My Profile</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="./browse.html?category=Breakfast">Breakfast</a></li>
+                        <li><a href="./browse.html?category=Main Course">Main Course</a></li>
+                        <li><a href="./browse.html?category=Sweets">Sweets</a></li>
+                        <li><a href="./browse.html?category=Appetizers">Appetizers</a></li>
+                        <li><a href="./browse.html?category=Beverages">Beverages</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@pakistanikitchen.com</p>
+                    <p>Phone: +92 300 1234567</p>
+                    <p>Address: Rawalpindi, Pakistan</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Pakistani Kitchen. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
     <script src="./js/auth.js"></script>
     <script src="./js/browse.js"></script>

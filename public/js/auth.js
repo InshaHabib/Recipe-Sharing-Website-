@@ -57,44 +57,112 @@ function setupAuthModal() {
     }
 
     function updateModalMode() {
+        const errorDiv = document.getElementById('auth-error');
+        const passwordHint = document.getElementById('password-hint');
+        const submitBtn = document.getElementById('auth-submit-btn');
+        
+        if (errorDiv) {
+            errorDiv.style.display = 'none';
+            errorDiv.textContent = '';
+        }
+        
+        const passwordHintEl = document.getElementById('password-hint');
+        
         if (isLoginMode) {
             modalTitle.textContent = 'Login';
-            usernameField.style.display = 'none';
-            toggleLink.textContent = 'Register';
+            if (usernameField) usernameField.style.display = 'none';
+            if (passwordHintEl) passwordHintEl.style.display = 'none';
+            if (submitBtn) submitBtn.textContent = 'Login';
+            if (toggleLink) toggleLink.textContent = 'Register';
             document.getElementById('toggle-auth').innerHTML = 
                 'Don\'t have an account? <a href="#" id="toggle-link">Register</a>';
         } else {
             modalTitle.textContent = 'Register';
-            usernameField.style.display = 'block';
-            toggleLink.textContent = 'Login';
+            if (usernameField) usernameField.style.display = 'block';
+            if (submitBtn) submitBtn.textContent = 'Register';
+            if (toggleLink) toggleLink.textContent = 'Login';
             document.getElementById('toggle-auth').innerHTML = 
                 'Already have an account? <a href="#" id="toggle-link">Login</a>';
         }
         // Re-attach event listener
-        document.getElementById('toggle-link').addEventListener('click', (e) => {
-            e.preventDefault();
-            isLoginMode = !isLoginMode;
-            updateModalMode();
+        const newToggleLink = document.getElementById('toggle-link');
+        if (newToggleLink) {
+            newToggleLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                isLoginMode = !isLoginMode;
+                updateModalMode();
+            });
+        }
+    }
+
+    // Show password hint on register mode
+    const passwordField = document.getElementById('password');
+    const passwordHint = document.getElementById('password-hint');
+    if (passwordField && passwordHint) {
+        passwordField.addEventListener('focus', function() {
+            const currentMode = document.getElementById('modal-title').textContent === 'Register';
+            if (currentMode && passwordHint) {
+                passwordHint.style.display = 'block';
+            } else if (passwordHint) {
+                passwordHint.style.display = 'none';
+            }
         });
     }
 
     if (authForm) {
-        authForm.addEventListener('submit', async (e) => {
+
+        authForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const username = document.getElementById('username').value;
+            const errorDiv = document.getElementById('auth-error');
+            const submitBtn = document.getElementById('auth-submit-btn');
+            const modalTitleEl = document.getElementById('modal-title');
+            const currentIsLoginMode = modalTitleEl && modalTitleEl.textContent === 'Login';
+
+            // Hide previous errors
+            if (errorDiv) {
+                errorDiv.style.display = 'none';
+                errorDiv.textContent = '';
+            }
+
+            // Validate password length for registration
+            if (!currentIsLoginMode && password.length < 6) {
+                if (errorDiv) {
+                    errorDiv.textContent = 'Password must be at least 6 characters long';
+                    errorDiv.style.display = 'block';
+                }
+                return;
+            }
+
+            // Disable button during submission
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Please wait...';
+            }
 
             try {
-                if (isLoginMode) {
+                if (currentIsLoginMode) {
                     await login(email, password);
                 } else {
                     await register(username, email, password);
                 }
                 modal.style.display = 'none';
                 authForm.reset();
+                if (errorDiv) errorDiv.style.display = 'none';
             } catch (error) {
-                alert(error.message || 'Authentication failed');
+                if (errorDiv) {
+                    errorDiv.textContent = error.message || 'Authentication failed. Please try again.';
+                    errorDiv.style.display = 'block';
+                } else {
+                    alert(error.message || 'Authentication failed');
+                }
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = currentIsLoginMode ? 'Login' : 'Register';
+                }
             }
         });
     }
@@ -156,8 +224,8 @@ function logout() {
         localStorage.removeItem('authToken');
         localStorage.removeItem('currentUser');
         updateAuthUI();
-        if (window.location.pathname === '/profile.html') {
-            window.location.href = '/';
+        if (window.location.pathname.includes('profile.html')) {
+            window.location.href = './index.html';
         }
     }
 }

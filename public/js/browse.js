@@ -23,11 +23,7 @@ async function loadRecipes() {
 
 // Apply filters
 function applyFilters() {
-    const category = document.getElementById('category-filter').value;
-    const maxTime = document.getElementById('time-filter').value;
-    const search = document.getElementById('search-filter').value;
-
-    // Get URL parameters
+    // Get URL parameters first
     const urlParams = new URLSearchParams(window.location.search);
     const urlCategory = urlParams.get('category');
     const urlSearch = urlParams.get('search');
@@ -40,12 +36,20 @@ function applyFilters() {
         document.getElementById('search-filter').value = urlSearch;
     }
 
+    // Get current filter values
+    let category = document.getElementById('category-filter').value;
+    const maxTime = document.getElementById('time-filter').value;
+    let search = document.getElementById('search-filter').value;
+
+    // Use URL values if available
+    if (urlCategory) category = urlCategory;
+    if (urlSearch) search = urlSearch;
+
     // Build query string
     const params = new URLSearchParams();
     if (category && category !== 'All') params.append('category', category);
     if (maxTime) params.append('maxTime', maxTime);
     if (search) params.append('search', search);
-    if (urlSearch) params.append('search', urlSearch);
 
     // Fetch filtered recipes
     fetch(`/api/recipes?${params.toString()}`)
@@ -91,6 +95,6 @@ function displayRecipes(recipes) {
 
 // View recipe detail
 function viewRecipe(recipeId) {
-    window.location.href = `/recipe-detail.html?id=${recipeId}`;
+    window.location.href = `./recipe-detail.html?id=${recipeId}`;
 }
 
