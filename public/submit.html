@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Share - Submit Recipe</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1 class="logo">🍳 Recipe Share</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/browse.html" class="nav-link">Browse Recipes</a></li>
+                <li><a href="/submit.html" class="nav-link active">Submit Recipe</a></li>
+                <li><a href="/profile.html" class="nav-link">User Profile</a></li>
+                <li><a href="#" class="nav-link" id="auth-link">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Submit Recipe Form -->
+    <section class="submit-section">
+        <div class="container">
+            <h2 class="section-title">Submit Your Recipe</h2>
+            <div class="form-container">
+                <form id="recipe-form" class="recipe-form">
+                    <div class="form-group">
+                        <label for="title">Recipe Title *</label>
+                        <input type="text" id="title" name="title" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Short Description</label>
+                        <textarea id="description" name="description" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ingredients">Ingredients * (one per line or comma-separated)</label>
+                        <textarea id="ingredients" name="ingredients" rows="6" required></textarea>
+                        <small>Example: 2 cups flour, 1 cup sugar, 2 eggs</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="instructions">Instructions * (one step per line)</label>
+                        <textarea id="instructions" name="instructions" rows="8" required></textarea>
+                        <small>Example: Preheat oven to 375°F, Mix ingredients, Bake for 20 minutes</small>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="category">Category *</label>
+                            <select id="category" name="category" required>
+                                <option value="">Select Category</option>
+                                <option value="Breakfast">Breakfast</option>
+                                <option value="Vegan">Vegan</option>
+                                <option value="Desserts">Desserts</option>
+                                <option value="Main Course">Main Course</option>
+                                <option value="Appetizers">Appetizers</option>
+                                <option value="Beverages">Beverages</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cooking-time">Cooking Time (minutes) *</label>
+                            <input type="number" id="cooking-time" name="cookingTime" min="1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="difficulty">Difficulty</label>
+                            <select id="difficulty" name="difficulty">
+                                <option value="Easy">Easy</option>
+                                <option value="Medium" selected>Medium</option>
+                                <option value="Hard">Hard</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="image">Image URL (optional)</label>
+                        <input type="url" id="image" name="image" placeholder="https://example.com/image.jpg">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit Recipe</button>
+                    <div id="form-message" class="form-message"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title">Login</h2>
+            <form id="auth-form">
+                <div id="username-field" style="display: none;">
+                    <label>Username</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div>
+                    <label>Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div>
+                    <label>Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <p id="toggle-auth">Don't have an account? <a href="#" id="toggle-link">Register</a></p>
+        </div>
+    </div>
+
+    <script src="./js/auth.js"></script>
+    <script src="./js/submit.js"></script>
+</body>
+</html>
+

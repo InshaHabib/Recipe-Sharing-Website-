@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Share - Home</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1 class="logo">🍳 Recipe Share</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link active">Home</a></li>
+                <li><a href="/browse.html" class="nav-link">Browse Recipes</a></li>
+                <li><a href="/submit.html" class="nav-link">Submit Recipe</a></li>
+                <li><a href="/profile.html" class="nav-link">User Profile</a></li>
+                <li><a href="#" class="nav-link" id="auth-link">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Search Bar -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search recipes by title or ingredients...">
+                <button id="search-btn" onclick="handleSearch()">Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Banner -->
+    <section class="banner">
+        <div class="banner-content">
+            <h2>Discover Amazing Recipes</h2>
+            <p>Share your favorite dishes and explore culinary delights from around the world</p>
+            <div class="banner-buttons">
+                <a href="./browse.html" class="btn btn-primary">Browse Recipes</a>
+                <a href="./submit.html" class="btn btn-secondary">Submit a Recipe</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Categories -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Featured Recipe Categories</h2>
+            <div class="category-grid">
+                <div class="category-card" onclick="filterByCategory('Breakfast')">
+                    <div class="category-icon">🥐</div>
+                    <h3>Breakfast</h3>
+                    <p>Start your day right</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('Vegan')">
+                    <div class="category-icon">🌱</div>
+                    <h3>Vegan</h3>
+                    <p>Plant-based goodness</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('Desserts')">
+                    <div class="category-icon">🍰</div>
+                    <h3>Desserts</h3>
+                    <p>Sweet treats</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('Main Course')">
+                    <div class="category-icon">🍖</div>
+                    <h3>Main Course</h3>
+                    <p>Hearty meals</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('Appetizers')">
+                    <div class="category-icon">🥗</div>
+                    <h3>Appetizers</h3>
+                    <p>Light bites</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('Beverages')">
+                    <div class="category-icon">🥤</div>
+                    <h3>Beverages</h3>
+                    <p>Refreshing drinks</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title">Login</h2>
+            <form id="auth-form">
+                <div id="username-field" style="display: none;">
+                    <label>Username</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div>
+                    <label>Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div>
+                    <label>Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <p id="toggle-auth">Don't have an account? <a href="#" id="toggle-link">Register</a></p>
+        </div>
+    </div>
+
+    <script src="./js/auth.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>
+

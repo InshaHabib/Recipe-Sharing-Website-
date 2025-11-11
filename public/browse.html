@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Share - Browse Recipes</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1 class="logo">🍳 Recipe Share</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/browse.html" class="nav-link active">Browse Recipes</a></li>
+                <li><a href="/submit.html" class="nav-link">Submit Recipe</a></li>
+                <li><a href="/profile.html" class="nav-link">User Profile</a></li>
+                <li><a href="#" class="nav-link" id="auth-link">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Filters -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="category-filter">Category:</label>
+                    <select id="category-filter" onchange="applyFilters()">
+                        <option value="All">All Categories</option>
+                        <option value="Breakfast">Breakfast</option>
+                        <option value="Vegan">Vegan</option>
+                        <option value="Desserts">Desserts</option>
+                        <option value="Main Course">Main Course</option>
+                        <option value="Appetizers">Appetizers</option>
+                        <option value="Beverages">Beverages</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="time-filter">Max Cooking Time (minutes):</label>
+                    <select id="time-filter" onchange="applyFilters()">
+                        <option value="">No limit</option>
+                        <option value="15">15 minutes</option>
+                        <option value="30">30 minutes</option>
+                        <option value="60">60 minutes</option>
+                        <option value="120">120 minutes</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="search-filter">Search:</label>
+                    <input type="text" id="search-filter" placeholder="Search recipes..." onkeyup="applyFilters()">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recipe List -->
+    <section class="recipes-section">
+        <div class="container">
+            <h2 class="section-title">All Recipes</h2>
+            <div id="recipes-grid" class="recipes-grid">
+                <!-- Recipes will be loaded here -->
+            </div>
+            <div id="no-recipes" class="no-recipes" style="display: none;">
+                <p>No recipes found. Try adjusting your filters.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title">Login</h2>
+            <form id="auth-form">
+                <div id="username-field" style="display: none;">
+                    <label>Username</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div>
+                    <label>Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div>
+                    <label>Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <p id="toggle-auth">Don't have an account? <a href="#" id="toggle-link">Register</a></p>
+        </div>
+    </div>
+
+    <script src="./js/auth.js"></script>
+    <script src="./js/browse.js"></script>
+</body>
+</html>
+
